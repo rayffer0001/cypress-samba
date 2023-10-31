@@ -1,0 +1,54 @@
+/// <reference types = "cypress" />
+describe("Login functionality", () => {
+  before(() => {
+    cy.visit("https://test.sambasafety.io/login");
+    cy.get("#idp-discovery-username").should('be.visible').type(
+      "ssjunipero+rayfferautoadmin@gmail.com"
+    );
+    cy.get("#idp-discovery-submit").click();
+    cy.get("#okta-signin-password").type("G0F0rBr0ke!");
+
+    cy.intercept("POST", "https://sambasafety-dev.okta.com/api/v1/authn").as(
+      "Authn"
+    );
+
+    cy.intercept("GET", "https://sambasafety-dev.okta.com/oauth2/default/.well-known/openid-configuration" , (req) => {
+       req.destroy();
+    
+    }, 'Well-known');
+      
+
+    cy.get("#okta-signin-submit").click();
+
+    cy.wait("@Authn"); //cy.wait("@Authn", { timeout: 50000 });
+    cy.wait("@Well-known", { timeout: 50000 });
+  });
+
+  it("should sign in", () => {
+    cy.wait(25000);
+    cy.get("#people-table-title__text").should("be.visible");
+
+    //cy.location('pathname').should('equal', 'https://test.sambasafety.io/people');
+  });
+
+  it.skip("should show required field for No username", () => {
+    cy.visit("https://test.sambasafety.io/login");
+    cy.get("#idp-discovery-submit").click();
+    cy.get("p").contains(
+      "We found some errors. Please review the form and make corrections."
+    );
+    cy.get("p")
+      .find("#input-container-error6")
+      .contains("This field cannot be left blank");
+  });
+
+  //No password - required fiend
+
+  // Wrong password
+
+  // Wrong username
+  // Wrong password
+
+  // Right username
+  // Right password
+});
