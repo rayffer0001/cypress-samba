@@ -1,7 +1,7 @@
 /// <reference types = "cypress" />
 
 describe("Login", () => {
-    var email = 'ssjunipero+rayfferautoadmin1@gmail.com';
+    var email = 'ssjunipero+rayfferautoadmin2@gmail.com';
     Cypress.on('uncaught:exception', (err, runnable) => {
         return false
       })
@@ -10,7 +10,7 @@ describe("Login", () => {
     cy.intercept("GET", "/qorta-shared-dependencies/importmap.json").as(
       "Dependency");
     cy.visit("/login");
-    cy.wait("@Dependency");
+    //cy.wait("@Dependency");
     cy.get("#idp-discovery-username").should("be.visible").type(email);
     cy.get("#idp-discovery-submit").should("be.visible").click();
     cy.get("#okta-signin-password").should("be.visible").type("G0F0rBr0ke!");
