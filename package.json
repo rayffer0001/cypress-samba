@@ -94,7 +94,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "html-report": "cypress run --browser chrome --headless --spec 'cypress/e2e/**'",
-    "cypress": "cypress run"
+    "cypress": "cypress run",
+    "run-all-test": "npm run cypress --"
   },
   "author": "",
   "license": "ISC",
