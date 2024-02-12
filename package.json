@@ -101,10 +101,10 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "cypress": "^12.17.4",
+    "cypress": "^13.6.4",
     "cypress-file-upload": "^5.0.8",
     "cypress-mochawesome-reporter": "^3.5.1",
-    "faker": "^6.6.6",
+    "faker": "^5.5.3",
     "mochawesome": "^7.1.3",
     "reporter": "^0.1.0"
   }
