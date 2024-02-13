@@ -1,43 +1,47 @@
-pipeline {
-  agent any
+ipeline {
+    agent any
 
-  stage('Run Cypress tests') {
+    tools {
+        
+        nodejs 'NodeJS'
+
+        
+        xvfb 'Xvfb'
+    }
+
+    stages {
+        stage('Checkout') {
             steps {
                 script {
+                    
+                    checkout scm
+                }
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Run Cypress tests') {
+            steps {
+                script {
+                    
                     xvfb('npx cypress run')
                 }
             }
-  }
-  //parameters {
-    //string(name: "SPEC", defaultValue: "Cypress/e2e/**/**", )description: "Ejemplo: Cypress/e2e/*.spec.js"
-    //choice(name: "BROWSER", choices: ['chrome'], description: "Ejemplo: escoja una opcion)
-  //}
+        }
+    }
 
-//   stages{
-//     stage('Build'){
-//         steps{
-//             echo "Building application"
-//         }
-//     }
-
-//     stage('Testing'){
-//         steps{
-//             sh 'npm ci'
-//             sh "npx Cypress run"
-//         }
-//     }
-
-//     stage('Deploy'){
-//         steps{
-//             echo "Deplying the application"
-//         }
-//     }
-
-//     Post{
-//         always{
-//             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/report', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-//         }
-//     }
-    
-//   }
+    post {
+        always {
+            // Clean up
+            deleteDir()
+        }
+    }
 }
