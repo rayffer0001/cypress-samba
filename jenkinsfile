@@ -19,20 +19,21 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                script {
+        // stage('Install Dependencies') {
+        //     steps {
+        //         script {
                     
-                    sh 'npm install'
-                }
-            }
-        }
+        //             sh 'npm install'
+        //         }
+        //     }
+        // }
 
         stage('Run Cypress tests') {
             steps {
                 script {
                     
-                    xvfb('npx cypress run')
+                    //xvfb('npx cypress run')
+                    xvfb('npm run cypress')
                 }
             }
         }
