@@ -33,7 +33,8 @@ pipeline {
                 script {
                     
                     //xvfb('npx cypress run')
-                    xvfb('npx cypress run')
+                    //xvfb('npx cypress run')
+                    sh 'npx cypress run'
                 }
             }
         }
