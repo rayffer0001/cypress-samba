@@ -42,7 +42,7 @@ const randomlastName = randomLast + randomNumber2;
 
 Cypress.Commands.add('login', () => {
 
-    var email = 'ssjunipero+rayfferautoadmin2@gmail.com';
+    var email = 'ssjunipero+rayfferautoadmin3@gmail.com';
 
     Cypress.on('uncaught:exception', (err, runnable) => {
         return false

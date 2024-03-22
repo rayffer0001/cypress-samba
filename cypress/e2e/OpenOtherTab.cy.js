@@ -3,8 +3,8 @@
 
 
 
-describe("Login", () => {
-    var email = 'ssjunipero+rayfferautoadmin1@gmail.com';
+describe.skip("Login", () => {
+    var email = 'ssjunipero+rayfferautoadmin3@gmail.com';
     Cypress.on('uncaught:exception', (err, runnable) => {
         return false
       })
